@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.alphadevs.com"
+    },
+    "jhipsterVersion": "6.2.0",
+    "applicationType": "monolith",
+    "baseName": "StockMng",
+    "packageName": "com.alphadevs.com",
+    "packageFolder": "com/alphadevs/com",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YjIxNGIxNDFiMGUzYzYzODM3ZDMzMTczYWUyNzMxN2Y2NTZkODRhNTYxNzkwNzdiYWUwZTdjYWJkZDE0ZTk3MWJjMzg5MjgyYWE2MDRmZGRmNWU2Mzk5NzllYTU1NzJiNTJmNzkzYTUzM2U1ZjA5YmE5ZjhhNjJjNTQwNWM4NmU=",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}
