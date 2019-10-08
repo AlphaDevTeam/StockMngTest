@@ -1,0 +1,33 @@
+<div>
+    <h2 id="page-heading">
+        <span>Test Page </span>
+    </h2>
+    <div class="table-responsive" *ngIf="goodsReceiptDetails?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><span>ID</span></th>
+                <th><span>Grn Qty</span></th>
+                <th><span>Item</span></th>
+                <th><span>Grn</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let goodsReceiptDetails of goodsReceiptDetails ;trackBy: trackID">
+                <td><a [routerLink]="['/goods-receipt-details', goodsReceiptDetails.id, 'view' ]">{{goodsReceiptDetails.id}}</a></td>
+                <td>{{goodsReceiptDetails.grnQty}}</td>
+                <td>
+                    <div *ngIf="goodsReceiptDetails.item">
+                        <a [routerLink]="['/items', goodsReceiptDetails.item?.id, 'view' ]" >{{goodsReceiptDetails.item?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="goodsReceiptDetails.grn">
+                        <a [routerLink]="['/goods-receipt', goodsReceiptDetails.grn?.id, 'view' ]" >{{goodsReceiptDetails.grn?.id}}</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

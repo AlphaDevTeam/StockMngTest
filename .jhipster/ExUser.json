@@ -1,0 +1,37 @@
+{
+    "name": "ExUser",
+    "fields": [
+        {
+            "fieldName": "userKey",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "exUser",
+            "relationshipName": "relatedUser",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "company",
+            "otherEntityRelationshipName": "exUser",
+            "relationshipName": "company",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190819094122",
+    "javadoc": "Extra User Entity.\n@author Mihindu Karunarathne.",
+    "entityTableName": "ex_user",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

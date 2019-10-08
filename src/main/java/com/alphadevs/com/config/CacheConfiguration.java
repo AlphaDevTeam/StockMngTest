@@ -43,6 +43,30 @@ public class CacheConfiguration {
             createCache(cm, com.alphadevs.com.domain.User.class.getName());
             createCache(cm, com.alphadevs.com.domain.Authority.class.getName());
             createCache(cm, com.alphadevs.com.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.alphadevs.com.domain.Products.class.getName());
+            createCache(cm, com.alphadevs.com.domain.Desings.class.getName());
+            createCache(cm, com.alphadevs.com.domain.Job.class.getName());
+            createCache(cm, com.alphadevs.com.domain.Job.class.getName() + ".details");
+            createCache(cm, com.alphadevs.com.domain.Job.class.getName() + ".assignedTos");
+            createCache(cm, com.alphadevs.com.domain.JobDetais.class.getName());
+            createCache(cm, com.alphadevs.com.domain.JobStatus.class.getName());
+            createCache(cm, com.alphadevs.com.domain.Items.class.getName());
+            createCache(cm, com.alphadevs.com.domain.PurchaseOrder.class.getName());
+            createCache(cm, com.alphadevs.com.domain.PurchaseOrder.class.getName() + ".details");
+            createCache(cm, com.alphadevs.com.domain.PurchaseOrderDetails.class.getName());
+            createCache(cm, com.alphadevs.com.domain.GoodsReceipt.class.getName());
+            createCache(cm, com.alphadevs.com.domain.GoodsReceipt.class.getName() + ".details");
+            createCache(cm, com.alphadevs.com.domain.GoodsReceipt.class.getName() + ".linkedPOs");
+            createCache(cm, com.alphadevs.com.domain.GoodsReceiptDetails.class.getName());
+            createCache(cm, com.alphadevs.com.domain.CashBook.class.getName());
+            createCache(cm, com.alphadevs.com.domain.DocumentType.class.getName());
+            createCache(cm, com.alphadevs.com.domain.Location.class.getName());
+            createCache(cm, com.alphadevs.com.domain.Customer.class.getName());
+            createCache(cm, com.alphadevs.com.domain.Supplier.class.getName());
+            createCache(cm, com.alphadevs.com.domain.Worker.class.getName());
+            createCache(cm, com.alphadevs.com.domain.ExUser.class.getName());
+            createCache(cm, com.alphadevs.com.domain.Stock.class.getName());
+            createCache(cm, com.alphadevs.com.domain.Company.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

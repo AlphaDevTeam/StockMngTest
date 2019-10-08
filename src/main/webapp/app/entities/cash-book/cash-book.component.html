@@ -1,0 +1,83 @@
+<div>
+    <h2 id="page-heading">
+        <span>Cash Books</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cash-book" [routerLink]="['/cash-book/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Cash Book
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="cashBooks?.length === 0">
+        <span>No cashBooks found</span>
+    </div>
+    <div class="table-responsive" *ngIf="cashBooks?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Cashbook Date</span></th>
+            <th><span>Cashbook Description</span></th>
+            <th><span>Cashbook Amount CR</span></th>
+            <th><span>Cashbook Amount DR</span></th>
+            <th><span>Cashbook Balance</span></th>
+            <th><span>Location</span></th>
+            <th><span>Document Type</span></th>
+            <th><span>Item</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let cashBook of cashBooks ;trackBy: trackId">
+                <td><a [routerLink]="['/cash-book', cashBook.id, 'view' ]">{{cashBook.id}}</a></td>
+                <td>{{cashBook.cashbookDate | date:'mediumDate'}}</td>
+                <td>{{cashBook.cashbookDescription}}</td>
+                <td>{{cashBook.cashbookAmountCR}}</td>
+                <td>{{cashBook.cashbookAmountDR}}</td>
+                <td>{{cashBook.cashbookBalance}}</td>
+                <td>
+                    <div *ngIf="cashBook.location">
+                        <a [routerLink]="['/location', cashBook.location?.id, 'view' ]" >{{cashBook.location?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="cashBook.documentType">
+                        <a [routerLink]="['/document-type', cashBook.documentType?.id, 'view' ]" >{{cashBook.documentType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="cashBook.item">
+                        <a [routerLink]="['/items', cashBook.item?.id, 'view' ]" >{{cashBook.item?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/cash-book', cashBook.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/cash-book', cashBook.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/cash-book', { outlets: { popup: cashBook.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

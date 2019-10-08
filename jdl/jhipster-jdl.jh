@@ -1,0 +1,281 @@
+
+/**
+ * Products Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity Products {
+	productCode String required,
+    productName String required,
+    productPrefix String required,
+	productProfMargin Double required   
+}
+
+/**
+ * Desings Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity Desings {
+	desingCode String required,
+    desingName String required,
+    desingPrefix String required,
+	desingProfMargin Double required  
+}
+
+/**
+ * Job Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity Job {
+	jobCode String required,
+    jobDescription String,
+    jobStartDate LocalDate,
+    jobEndDate LocalDate,
+    jobAmount Double,
+}
+
+/**
+ * Job Details Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity JobDetais {
+	jobItemPrice Double required,
+    jobItemQty Integer required
+}
+
+
+/**
+ * Job Status Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity JobStatus {
+	jobStatusCode String required,
+    jobStatusDescription String,
+	isActive Boolean
+}
+
+
+
+/**
+ * Items Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity Items {
+	itemCode String required,
+    itemName String required,
+    itemDescription String required,
+	itemPrice Double required,  
+    itemSerial String required,
+    itemSupplierSerial String,
+    itemCost Double required,
+    itemSalePrice Double,
+    originalStockDate LocalDate required,
+    modifiedStockDate LocalDate,
+    
+}
+
+/**
+ * PurchaseOrder Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity PurchaseOrder {
+	poNumber String required,
+    poDate LocalDate required,
+}
+
+/**
+ * PurchaseOrderDetails Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity PurchaseOrderDetails {
+	itemQty Integer required,
+}
+
+
+
+/**
+ * GRN Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity GoodsReceipt {
+	grnNumber String required,
+    grnDate LocalDate required,
+    poNumber String ,
+}
+
+/**
+ * GRN Details Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity GoodsReceiptDetails {
+	grnQty String required,
+}
+
+
+/**
+ * CashBook Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity CashBook {
+	cashbookDate LocalDate required,
+    cashbookDescription String required,
+    cashbookAmountCR Double required,
+    cashbookAmountDR Double required,
+    cashbookBalance Double required
+}
+
+/**
+ * DocumentType Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity DocumentType {
+	documentTypeCode String required,
+    documentType String required
+}
+
+
+/**
+ * Location Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity Location {
+	locationCode String required,
+    locationName String required,
+    locationProfMargin Double required,
+    isActive Boolean,
+}
+
+
+/**
+ * Customer Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity Customer {
+	customerCode String required,
+    customerName String required,
+    customerLimit Double required,
+    isActive Boolean,    
+}
+
+/**
+ * Supplier Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity Supplier {
+	supplierCode String required,
+    supplierName String required,
+    supplierLimit Double required,
+    isActive Boolean,    
+}
+
+/**
+ * Worker Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity Worker {
+	workerCode String required,
+    workerName String required,
+    workerLimit Double,
+    isActive Boolean,    
+}
+
+
+/**
+ * Extra User Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity ExUser {
+	userKey String ,
+}
+
+
+/**
+ * Customer Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity Stock {
+	stockQty Double required,
+}
+
+
+/**
+ * Company Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity Company {
+	companyCode String required,
+    companyName String required,
+    companyRegNumber String required,
+}
+
+relationship ManyToOne {
+  Desings{relatedProduct} to Products,
+  Desings{location} to Location,
+  
+  Products{location} to Location,
+  
+  Items{relatedDesign} to Desings,
+  Items{relatedProduct} to Products,
+  Items{location} to Location,
+  
+  Stock{item} to Items,
+  Stock{location} to Location,
+  Stock{company} to Company,
+  
+  PurchaseOrderDetails{item} to Items,
+  GoodsReceiptDetails{item} to Items,
+  JobDetais{item} to Items,
+  
+  CashBook{location} to Location,
+  CashBook{documentType} to DocumentType,
+  CashBook{location} to Location, 
+  CashBook{item} to Items,
+  //CashBook{company}  to Company,
+  
+  
+  PurchaseOrder{supplier} to Supplier,
+  PurchaseOrder{location} to Location,
+  //PurchaseOrder{company} to Company,
+  
+  GoodsReceipt{supplier} to Supplier,
+  GoodsReceipt{location} to Location,
+  //GoodsReceipt{company} to Company,
+  
+  Job{location} to Location,
+  //Job{company} to Company,
+  Job{customer} to Customer,
+  
+  Location{company} to Company,
+  Location{user} to User,
+  
+  Customer{location} to Location,
+  Worker{location} to Location,
+  JobStatus{location} to Location,
+  Supplier{location} to Location
+}
+relationship OneToMany{
+  PurchaseOrder{details} to PurchaseOrderDetails{po},
+  GoodsReceipt{details} to GoodsReceiptDetails{grn},
+  Job{details} to JobDetais{job},
+  Job{assignedTo} to Worker,
+  GoodsReceipt{linkedPOs} to PurchaseOrder{relatedGRN}
+}
+
+relationship OneToOne{
+	ExUser{relatedUser} to User{exUser},
+    ExUser{company} to Company,
+    Job{status} to JobStatus
+}
+
+// Set pagination options
+//paginate * with infinite-scroll
+//paginate * with pagination
+
+//dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl except DocumentType
+service all with serviceClass except DocumentType
+
+filter * 
+// Set an angular suffix
+//angularSuffix * with alpha

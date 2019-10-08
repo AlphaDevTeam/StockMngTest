@@ -1,0 +1,38 @@
+{
+    "name": "PurchaseOrderDetails",
+    "fields": [
+        {
+            "fieldName": "itemQty",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "items",
+            "otherEntityRelationshipName": "purchaseOrderDetails",
+            "relationshipName": "item",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "purchaseOrder",
+            "otherEntityRelationshipName": "details",
+            "relationshipName": "po",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190819094113",
+    "javadoc": "PurchaseOrderDetails Entity.\n@author Mihindu Karunarathne.",
+    "entityTableName": "purchase_order_details",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

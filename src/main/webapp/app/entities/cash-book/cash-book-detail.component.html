@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cashBook">
+            <h2><span>Cash Book</span> {{cashBook.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Cashbook Date</span></dt>
+                <dd>
+                    <span>{{cashBook.cashbookDate}}</span>
+                </dd>
+                <dt><span>Cashbook Description</span></dt>
+                <dd>
+                    <span>{{cashBook.cashbookDescription}}</span>
+                </dd>
+                <dt><span>Cashbook Amount CR</span></dt>
+                <dd>
+                    <span>{{cashBook.cashbookAmountCR}}</span>
+                </dd>
+                <dt><span>Cashbook Amount DR</span></dt>
+                <dd>
+                    <span>{{cashBook.cashbookAmountDR}}</span>
+                </dd>
+                <dt><span>Cashbook Balance</span></dt>
+                <dd>
+                    <span>{{cashBook.cashbookBalance}}</span>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="cashBook.location">
+                        <a [routerLink]="['/location', cashBook.location?.id, 'view']">{{cashBook.location?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Document Type</span></dt>
+                <dd>
+                    <div *ngIf="cashBook.documentType">
+                        <a [routerLink]="['/document-type', cashBook.documentType?.id, 'view']">{{cashBook.documentType?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Item</span></dt>
+                <dd>
+                    <div *ngIf="cashBook.item">
+                        <a [routerLink]="['/items', cashBook.item?.id, 'view']">{{cashBook.item?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cash-book', cashBook.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
